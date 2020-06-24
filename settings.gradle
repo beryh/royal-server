@@ -1,0 +1,4 @@
+rootProject.name = 'royal-server'
+include 'api'
+include 'common'
+
