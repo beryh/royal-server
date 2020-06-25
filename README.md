@@ -4,6 +4,18 @@
 - Spring Web MVC
 - Multi module을 기본 골격으로 가지도록 작성
 
+## 개발환경
+ - VS Code [https://code.visualstudio.com/download]
+   - 필요 Extensions
+   - Gradle Tasks [https://marketplace.visualstudio.com/items?itemName=richardwillis.vscode-gradle]
+   - Java Extention Pack [https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack]
+   - Language Support for Java [https://marketplace.visualstudio.com/items?itemName=redhat.java]
+   - Spring Boot Tools [https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot]
+ - Docker
+   - Docker for windows
+   - Docker for mac
+   - Linux
+
 ## 아키텍쳐
  - TBD
 
