@@ -1,4 +1,17 @@
+
+plugins {
+    id 'java'
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
 dependencies {
     compile('org.springframework.boot:spring-boot-starter-web')
     testCompile('org.springframework.boot:spring-boot-starter-test')
+}
+
+bootJar {
+    enabled = true
+    version = new Date().format("yyyyMMddHHmmss")
+    archiveFileName = "${archiveBaseName.get()}.${archiveExtension.get()}"
 }
