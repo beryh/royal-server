@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: jdbc:mysql://royalserver-mysql:3306/coin-royal?useSSL=false
+    username: root
+    password: royal-dbpw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true

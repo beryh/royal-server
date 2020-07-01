@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://  # TODO: Fill in local database connection url
+    username: root
+    password: royal-dbpw
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true

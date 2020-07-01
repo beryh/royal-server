@@ -2,6 +2,7 @@ package io.devyang.royalserver.dto;
 
 import java.sql.Timestamp;
 
+import io.devyang.royalserver.exceptions.NotEnoughResourceException;
 import lombok.*;
 
 @Getter
@@ -25,7 +26,7 @@ public class UserDto {
         Timestamp updatedTimestamp = this.updateSpinCount();
 
         if (count > this.remainSpin) {
-            throw new RuntimeException();
+            throw new NotEnoughResourceException("Not Enough Spin!");
         }
 
         this.remainSpin -= count;

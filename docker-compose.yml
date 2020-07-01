@@ -1,0 +1,31 @@
+version: "3"
+services:
+  royalserver-mysql:
+    image: mysql:5.7
+    healthcheck:
+      test: mysql --protocol=socket -h localhost -u root -p$$MYSQL_ROOT_PASSWORD -e 'SELECT 1'
+      timeout: 5s
+      retries: 3
+    container_name: royalserver-mysql
+    restart: always
+    volumes:
+      - ./db/:/docker-entrypoint-initdb.d/
+    ports:
+      - '3306:3306'
+    environment:
+      - MYSQL_ROOT_PASSWORD=royal-dbpw
+      - MYSQL_DATABASE=coin-royal
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_bin
+
+  royalserver-api:
+    image: royal-server/api:latest
+    container_name: royalserver-api
+    ports:
+      - '8080:8080'
+    links:
+      - royalserver-mysql
+    depends_on:
+      - royalserver-mysql
+    environment:
+      - "SPRING_PROFILES_ACTIVE=docker"
+      - TZ=Asia/Seoul

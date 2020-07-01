@@ -4,30 +4,30 @@ import io.devyang.royalserver.dto.UserDto;
 import io.devyang.royalserver.services.RouletteService;
 import io.devyang.royalserver.services.UserService;
 import io.devyang.royalserver.vo.SpinResultVo;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@RestController
+@RestController("/api/roulette")
 public class RouletteController {
-    @Autowired
-    private RouletteService rouletteService;
+    private final RouletteService rouletteService;
+    private final UserService userService;
 
-    @Autowired
-    private UserService userService;
+    public RouletteController(RouletteService rouletteService, UserService userService) {
+        this.rouletteService = rouletteService;
+        this.userService = userService;
+    }
 
-    @GetMapping("/api/roulette/rewards")
+    @GetMapping("/rewards")
     public List<String> getAllRewardsByLevel(@RequestParam("level") Integer level) {
         return rouletteService.getAllRewardByLevel(level);
     }
 
-    @PostMapping("/api/roulette/spin")
-    public SpinResultVo spin() {
+    @PostMapping("/spin")
+    public SpinResultVo spin(@RequestBody(required = false) Integer level) {
         UserDto dummyUser = userService.getDummyUser();
+        dummyUser.setRouletteLevel(Optional.ofNullable(level).orElse(1));
         return rouletteService.spin(dummyUser);
     }
 }

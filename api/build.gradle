@@ -4,7 +4,10 @@ plugins {
 }
 
 dependencies {
-    compile('org.springframework.boot:spring-boot-starter-web')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtime('mysql:mysql-connector-java:8.0.18')
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
 }
 
@@ -16,7 +19,7 @@ dependencies {
 
 docker {
     springBootApplication {
-        baseImage = 'openjdk:8-jre-alpine'
+        baseImage = 'openjdk:11'
         ports = [8080]
         images = ['royal-server/api:latest']
         // jvmArgs = ['-Dspring.profiles.active=docker']
